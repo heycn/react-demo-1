@@ -3,32 +3,28 @@ import ReactDOM from 'react-dom'
 
 import './styles.css'
 
-function App() {
-  return (
-    <div className='App'>
-      爸爸
-      <Son messageForSon='儿子你好' />
-    </div>
-  )
-}
 
-class Son extends React.Component {
+
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = { n: 0 }
+  }
+  add() {
+    this.setState(state => {
+      const n = state.n + 1   // 这个 n 是新的 n
+      console.log(n)          // 然后把新的 n 打印出来
+      return { n }            // 缩写
+    })
+  }
   render() {
     return (
       <div className='Son'>
-        我是儿子，我爸对我说「{this.props.messageForSon}」
-        <Grandson messageForGrandson='孙子你好' />
+        n: {this.state.n}
+        <button onClick={() => this.add()}>+1</button>
       </div>
     )
   }
-}
-
-const Grandson = props => {
-  return (
-    <div className='Grandson'>
-      我是孙子，我爸对我说「{props.messageForGrandson}」
-    </div>
-  )
 }
 
 const rootElement = document.getElementById('root')
