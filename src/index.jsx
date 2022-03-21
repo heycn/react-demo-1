@@ -16,18 +16,25 @@ function App() {
 class Son extends React.Component {
   constructor() {
     super()
-    this.state = { n: 0 }
+    this.state = { n: 0, m: 0 }
   }
-  add() {
+  addN() {
     this.setState(state => {
-      return { n: (state.n += 1) }
+      return { n: state.n += 1 } // 不会覆盖 m
+    })
+  }
+  addM() {
+    this.setState(state => {
+      return { m: state.m += 1 } // 不会覆盖 n
     })
   }
   render() {
     return (
       <div className='Son'>
         n: {this.state.n}
-        <button onClick={() => this.add()}>+1</button>
+        <button onClick={() => this.addN()}>+1</button>
+        m: {this.state.m}
+        <button onClick={() => this.addM()}>+1</button>
         <Grandson />
       </div>
     )
