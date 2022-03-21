@@ -3,24 +3,37 @@ import ReactDOM from 'react-dom'
 
 import './styles.css'
 
-// function App() {
-//   return (
-//     <div className='App'>
-//       <Son />
-//     </div>
-//   )
-// }
-
-// 类组件
 class App extends React.Component {
-  constructor() {
-    super()
-    this.state = { n: 0 }
+  constructor(props) {
+    super(props)
+    this.state = { x: 1 }
   }
+
+  onClick = () => {
+    this.setState({
+      x: this.state.x + 1
+    })
+  }
+
   render() {
     return (
-      <div>n: {this.state.n}</div>
+      <div>
+        App
+        <button onClick={this.onClick}>+1</button>
+        <B name={this.state.x} />
+      </div>
     )
+  }
+}
+
+class B extends React.Component {
+  componentWillReceiveProps(newProps) {
+    console.log(this.props)
+    console.log('变化了')
+    console.log(newProps)
+  }
+  render() {
+    return <div>{this.props.name}</div>
   }
 }
 
