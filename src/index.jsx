@@ -16,7 +16,14 @@ function App() {
 class Son extends React.Component {
   constructor() {
     super()
-    this.state = { n: 0, m: 0 }
+    this.state = {
+      n: 0,
+      m: 0,
+      user: {
+        name: 'heycn',
+        age: 18
+      }
+    }
   }
   addN() {
     this.setState(state => {
@@ -28,9 +35,21 @@ class Son extends React.Component {
       return { m: (state.m += 1) }
     })
   }
+  changName() {
+    this.setState({
+      user: {
+        name: 'chennan'
+        // age 会被置空
+      }
+    })
+  }
   render() {
     return (
       <div className='Son'>
+        <div>user.name: {this.state.user.name}</div>
+        <div>user.age: {this.state.user.age}</div>
+        <button onClick={() => this.changName()}>change name</button>
+        <hr />
         n: {this.state.n}
         <button onClick={() => this.addN()}>+1</button>
         m: {this.state.m}
