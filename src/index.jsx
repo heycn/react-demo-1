@@ -3,18 +3,24 @@ import ReactDOM from 'react-dom'
 
 import './styles.css'
 
+function App() {
+  return (
+    <div className='App'>
+      爸爸
+      <Son />
+    </div>
+  )
+}
 
-
-class App extends React.Component {
+// 类组件
+class Son extends React.Component {
   constructor() {
     super()
     this.state = { n: 0 }
   }
   add() {
     this.setState(state => {
-      const n = state.n + 1   // 这个 n 是新的 n
-      console.log(n)          // 然后把新的 n 打印出来
-      return { n }            // 缩写
+      return { n: (state.n += 1) }
     })
   }
   render() {
@@ -22,9 +28,21 @@ class App extends React.Component {
       <div className='Son'>
         n: {this.state.n}
         <button onClick={() => this.add()}>+1</button>
+        <Grandson />
       </div>
     )
   }
+}
+
+// 函数组件
+const Grandson = () => {
+  const [n, setN] = React.useState(0)
+  return (
+    <div className='Grandson'>
+      n: {n}
+      <button onClick={() => setN(n + 1)}>+1</button>
+    </div>
+  )
 }
 
 const rootElement = document.getElementById('root')
