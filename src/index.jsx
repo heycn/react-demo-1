@@ -3,39 +3,29 @@ import ReactDOM from 'react-dom'
 
 import './styles.css'
 
-class App extends React.Component {
+class A extends React.Component {
   constructor(props) {
     super(props)
     this.state = { x: 1 }
   }
 
-  onClick = () => {
-    this.setState({
-      x: this.state.x + 1
-    })
+  onClick1 = () => {
+    this.setState({ x: this.state.x + 1 })
+  }
+
+  onClick2 = () => {
+    this.setState(state => ({ x: state.x + 1 }))
   }
 
   render() {
     return (
       <div>
-        App
-        <button onClick={this.onClick}>+1</button>
-        <B name={this.state.x} />
+        x: {this.state.x}
+        <button onClick={this.onClick2}>+1</button>
       </div>
     )
   }
 }
 
-class B extends React.Component {
-  componentWillReceiveProps(newProps) {
-    console.log(this.props)
-    console.log('变化了')
-    console.log(newProps)
-  }
-  render() {
-    return <div>{this.props.name}</div>
-  }
-}
-
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement)
+ReactDOM.render(<A />, rootElement)
