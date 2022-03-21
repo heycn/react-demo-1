@@ -38,8 +38,8 @@ class Son extends React.Component {
   changName() {
     this.setState({
       user: {
+        ...this.state.user,
         name: 'chennan'
-        // age 会被置空
       }
     })
   }
