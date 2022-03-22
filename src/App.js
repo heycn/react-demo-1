@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import useUpdate from './useUpdate'
 
 const App = props => {
-  const [childVisible, setChildVisible] = useState(true)
-  const hide = () => setChildVisible(false)
-  const show = () => setChildVisible(true)
+  const [n, setN] = useState(0)
+  const onClick = () => {
+    setN(n + 1)
+  }
+
+  useUpdate(() => {
+    console.log('变了')
+  }, n)
 
   return (
     <div>
-      {childVisible ? <button onClick={hide}>hide</button> : <button onClick={show}>show</button>}
-      {childVisible ? <Child /> : null}
+      {n}
+      <button onClick={onClick}>+1</button>
     </div>
-  )
-}
-
-const Child = props => {
-  useEffect(() => {
-    return () => {
-      console.log('Child 销毁了')
-    }
-  })
-  return (
-    <div>Child</div>
   )
 }
 
