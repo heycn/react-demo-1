@@ -3,21 +3,10 @@ import React from 'react'
 class App extends React.PureComponent {
   constructor(props) {
     super(props)
-    this.state = { n: 1 }
-  }
-  onClick = () => {
-    // onClick 函数里对 n 进行了 +1 -1 操作
-    this.setState(state => ({ n: state.n + 1 }))
-    this.setState(state => ({ n: state.n - 1 }))
+    this.state = { array: [1, 2, 3] }
   }
   render() {
-    console.log('render了')
-    return (
-      <div>
-        n: {this.state.n}
-        <button onClick={this.onClick}>+1</button>
-      </div>
-    )
+    return this.state.array.map(n => <div key={n}>{n}</div>)
   }
 }
 
