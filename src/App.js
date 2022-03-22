@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react'
 
 const App = props => {
-  const [n, setN] = useState(0)
-  const onClick = () => setN(n + 1)
-  useEffect(() => {
-    console.log('use effect')
-  }, [])
+  const [childVisible, setChildVisible] = useState(true)
+  const hide = () => setChildVisible(false)
+  const show = () => setChildVisible(true)
+
   return (
     <div>
-      {n}
-      <button onClick={onClick}>+1</button>
+      {childVisible ? <button onClick={hide}>hide</button> : <button onClick={show}>show</button>}
+      {childVisible ? <Child /> : null}
     </div>
+  )
+}
+
+const Child = props => {
+  useEffect(() => {
+    console.log('Child 销毁了')
+  })
+  return (
+    <div>Child</div>
   )
 }
 
