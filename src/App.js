@@ -15,7 +15,9 @@ const App = props => {
 
 const Child = props => {
   useEffect(() => {
-    console.log('Child 销毁了')
+    return () => {
+      console.log('Child 销毁了')
+    }
   })
   return (
     <div>Child</div>
