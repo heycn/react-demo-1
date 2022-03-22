@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const App = props => {
   const [n, setN] = useState(0)
   const onClick = () => setN(n + 1)
+  useEffect(() => {
+    console.log('use effect')
+  }, [])
   return (
     <div>
       {n}
