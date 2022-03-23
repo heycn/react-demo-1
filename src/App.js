@@ -7,14 +7,13 @@ const store = {
   movies: null
 }
 
-// 将所有操作集中在 reducer
 const reducer = (state, action) => {
   switch (action.type) {
     case 'setUser':
       return { ...state, user: action.user }
     case 'setBooks':
       return { ...state, books: action.books }
-    case 'movies':
+    case 'setMovies':
       return { ...state, movies: action.movies }
     default:
       throw new Error()
@@ -68,8 +67,8 @@ const Books = () => {
 const Movies = () => {
   const { state, dispatch } = useContext(Context)
   useEffect(() => {
-    ajax('/movies').then(movie => {
-      dispatch({ type: 'setMovies', movie })
+    ajax('/movies').then(movies => {
+      dispatch({ type: 'setMovies', movies })
     })
   }, [])
   return (
