@@ -1,18 +1,28 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
+
+const initial = {
+  n: 0
+}
+
+const reducer = (state, action) => {
+  if (action.type === 'add') {
+    return { n: state.n + action.number }
+  } else if (action.type === 'multi') {
+    return { n: state.n * 2 }
+  } else {
+    throw new Error('找不到 type')
+  }
+}
 
 const App = () => {
-  const [user, setUser] = useState({ name: 'heycn', age: 22 })
+  const [state, dispatch] = useReducer(reducer, initial)
   const onClick = () => {
-    setUser({
-      ...user,
-      name: '名字被改了'
-    })
+    dispatch({ type: 'add', number: 1 })
   }
   return (
     <div>
-      <div>{user.name}</div>
-      <div>{user.age}</div>
-      <button onClick={onClick}>修改名字</button>
+      n: {state.n}
+      <button onClick={onClick}>+1</button>
     </div>
   )
 }
